@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Appointment
+		</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+			body { 
+			    padding-top: 79px; 
+			}
+
+			.navbar-brand {
+				position: fixed;
+			    top: 20px;
+			}
+
+			input[type="radio"] {
+				margin-top: -1px;
+				vertical-align: middle;
+			}
+
+			.container .vertical-center{
+				width: 50%;
+				position: fixed;
+				top: 57%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				text-align: center;
+				background-color: #F8F8F8;
+				box-shadow: 0 8px 16px -6px black;
+			}
+
+			.bgimg-1 {
+				position: relative;
+				opacity: 0.65;
+				background-position: center;
+				background-size: cover;
+				background-attachment: fixed;
+  				background-repeat: no-repeat;
+				background-image: url("images/minecraft.jpg");
+				min-height: 500px;
+			}
+
+			.rainbow-text {
+				background-image: repeating-linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red, violet);
+				text-align: center;
+				background-size: 800% 800%;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				animation: rainbow 8s ease infinite;
+			}
+
+			@keyframes rainbow { 
+				0%{background-position:0% 50%}
+				50%{background-position:100% 25%}
+				100%{background-position:0% 50%}
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="header container">
+			<div class="navbar navbar-default navbar-fixed-top headroom headroom--not-bottom headroom--pinned headroom--top">
+				<div class="container">
+					<div class="navbar-header container" style="padding:15px">
+						<a href = "/"><img style="padding:0px; margin: 0px 0 0 -38px" class="navbar-brand" src="images/CutsuLogo.png"></a>
+					</div>
+					<ul style="margin: 0 0 0 -30px" class="nav navbar-nav navbar-right">
+						<!--data-toggle="collapse" data-target=".navbar-collapse"-->
+						<li><a data-scroll="" href="/" style="color: darkgray"><strong>Home</strong></a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<div class="bgimg-1">
+		</div>
+		<div class="container">
+			<div class="row">
+        		<div class="col-md-6">
+					<div class="jumbotron vertical-center">
+						<h3>Appointment submission successful! Your request has been queued and will be manually confirmed by me soon and will show up on the bottom of the home page. If I'm not fast enough, feel free to give me a nudge by shooting me a message.</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Appointment
+		</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+			body { 
+			    padding-top: 79px; 
+			}
+
+			.navbar-brand {
+				position: fixed;
+			    top: 20px;
+			}
+
+			input[type="radio"] {
+				margin-top: -1px;
+				vertical-align: middle;
+			}
+
+			.container .vertical-center{
+				width: 35%;
+				position: fixed;
+				top: 57%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				text-align: center;
+				background-color: #F8F8F8;
+				box-shadow: 0 8px 16px -6px black;
+			}
+
+			.bgimg-1 {
+				position: relative;
+				opacity: 0.65;
+				background-position: center;
+				background-size: cover;
+				background-attachment: fixed;
+  				background-repeat: no-repeat;
+				background-image: url("images/barber_pole_half_size.jpg");
+				min-height: 500px;
+			}
+
+			.rainbow-text {
+				background-image: repeating-linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red, violet);
+				text-align: center;
+				background-size: 800% 800%;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				animation: rainbow 8s ease infinite;
+			}
+
+			@keyframes rainbow { 
+				0%{background-position:0% 50%}
+				50%{background-position:100% 25%}
+				100%{background-position:0% 50%}
+			}
+		</style>
+	</head>
+
+	<body onload="start()">
+		<header id="header" class="header container">
+			<div class="navbar navbar-default navbar-fixed-top headroom headroom--not-bottom headroom--pinned headroom--top">
+				<div class="container">
+					<div class="navbar-header container" style="padding:15px">
+						<a href = "/"><img style="padding:0px; margin: 0px 0 0 -38px" class="navbar-brand" src="images/CutsuLogo.png"></a>
+					</div>
+					<ul style="margin: 0 0 0 -30px" class="nav navbar-nav navbar-right">
+						<!--data-toggle="collapse" data-target=".navbar-collapse"-->
+						<li><a data-scroll="" href="/" style="color: darkgray"><strong>Home</strong></a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<div class="bgimg-1">
+		</div>
+		<div class="container">
+			<div class="row">
+        		<div class="col-md-6">
+					<div class="jumbotron vertical-center">
+						<h2 style="margin-bottom: -10px; margin-top: -10px">Available Timeslots</h2>
+						<br>
+						<form onsubmit="return validateForm()">
+							<select class="form-control" id="timeslotSelect">
+							</select>
+							<br>
+							<div class="form-group">
+								<label for="name">First Name:</label>
+								<input class="form-control" id="firstName">
+							</div>
+							<div class="form-group">
+								<label for="name">Last Name:</label>
+								<input class="form-control" id="lastName">
+							</div>
+							<div class="form-group">
+								<label for="message">Message (Optional - For a special note or the <i class="rainbow-text" style="font-family: 'Comic Sans MS', cursive, sans-serif;">meeeeems</i>):</label>
+								<input class="form-control" id="message">
+							</div>
+							<button style="margin-bottom: -20px" type="submit" value="submit" class="btn btn-info" id="submitButton">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/js/scripts.js" type="text/javascript"></script>
+		<script>
+			var timeslotData;
+			function start(){
+				timeslotData = <%- JSON.stringify(timeslotData) %>;
+				let timeslotTable = document.getElementById('timeslotSelect');
+				for(let i=0; i<timeslotData.date.length; i++){
+					let dropdownInput = document.createElement('option');
+					let date = new Date(parseDate(timeslotData.date[i]).replace('-',','));
+					dropdownInput.setAttribute('value', i);
+					dropdownInput.setAttribute('style', "text-align : center;")
+					dropdownInput.innerHTML = parseDate(timeslotData.date[i]) + " (" + getDay(date) + ") | " + parseTime(timeslotData.time[i]);
+					timeslotTable.appendChild(dropdownInput);
+				}
+				if(timeslotData.date.length == 0){
+					let dropdownInput = document.createElement('option');
+					dropdownInput.setAttribute('style', "text-align : center;")
+					dropdownInput.innerHTML = "No Available Timeslots"
+					timeslotTable.appendChild(dropdownInput);
+					document.getElementById('submitButton').disabled = true;
+
+				}
+			}
+
+			function validateForm(){
+				let firstNameInput = document.getElementById('firstName');
+				let lastNameInput = document.getElementById('lastName');
+				let messageInput = document.getElementById('message');
+
+				if(firstNameInput.value == ""){
+					alert("Please enter your first name you knob.")
+					return false;
+				}
+				else if(lastNameInput.value == ""){
+					alert("Please enter your last name not tryna hafta guess bruv.")
+					return false;
+				}
+				else if(message.value.length > 140){
+					alert("Message character limit is 140 characters (for some reason).")
+					return false;
+				}
+
+				var formData = {
+					name : firstNameInput.value.trim() + " " + lastNameInput.value.trim(),
+					date : null,
+					time : null,
+					message : "",
+					id : null
+				};
+
+				let dateTimeIndex = document.getElementById("timeslotSelect")[0].value;
+				let selectedDate = timeslotData.date[dateTimeIndex];
+				let selectedTime = timeslotData.time[dateTimeIndex];
+				let selectedID = timeslotData.id[dateTimeIndex];
+
+				formData.date = parseDate(selectedDate);
+				formData.time = selectedTime;
+				formData.message = messageInput.value;
+				formData.id = selectedID;
+
+				var request = new XMLHttpRequest();
+				request.open("POST", "", true);
+				request.onload = function() {
+					console.log(request.status)
+					if (request.status === 200) {
+						window.location.replace('/formSubmitted');
+					}
+				};
+				request.setRequestHeader('Content-Type', 'application/json');
+				request.send(JSON.stringify(formData));
+			}
+
+		</script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</body>
+</html>

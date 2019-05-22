@@ -1,0 +1,17 @@
+{
+  "name": "custuhiro",
+  "version": "1.0.0",
+  "description": "A website for creating haircutting appointments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Atsuhiro Suzuki",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "request": "^2.88.0"
+  }
+}
