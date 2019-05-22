@@ -17,8 +17,8 @@ var connection = mysql.createConnection({
 //CPanel DB
 var connection = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "password",
+    user: "cutsuhiro_admin",
+    password: "5C8xdpG7xDK2Djp3",
     database: "cutsuhiro_haircutdb"
 });
 
