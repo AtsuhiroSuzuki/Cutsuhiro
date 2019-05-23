@@ -6,21 +6,21 @@ var app = express();
 var request = require('request');
 
 //Local DB
-/*
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "1259",
     database: "haircutdb"
-});*/
+});
 
+/*
 //CPanel DB
 var connection = mysql.createConnection({
     host: "localhost",
     user: "cutsuhiro_admin",
     password: "5C8xdpG7xDK2Djp3",
     database: "cutsuhiro_haircutdb"
-});
+});*/
 
 
 //Used for path.join() to locate files
