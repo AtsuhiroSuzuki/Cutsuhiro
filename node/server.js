@@ -94,7 +94,7 @@ app.get('/formSubmitted', function(req, res) {
 app.get('/barber', function(req, res) {
     connection.query('SELECT appointment_id, name, date, time, message, confirmed FROM appointments ORDER BY date, time', function(err, result){
         let appointmentData = result;
-        connection.query('SELECT timeslot_id, date, time FROM timeslots ORDER BY date, time', function(err, rows){
+        connection.query('SELECT timeslots.timeslot_id, timeslots.date, timeslots.time FROM timeslots LEFT JOIN appointments ON timeslots.timeslot_id = appointments.timeslot_id WHERE appointments.timeslot_id IS NULL ORDER BY date, time', function(err, rows){
             res.render(path.join(__dirname, '..', 'views/admin.ejs'),{'appointmentData' : appointmentData, 'timeslotData' : rows});
         });
     });
