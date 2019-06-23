@@ -15,9 +15,8 @@
 			  height: 100%;
 			}
 
-			.bgimg-1, .bgimg-2, .bgimg-3 {
+			.bgimg-1, .bgimg-2{
 				position: relative;
-				opacity: 0.65;
 				background-position: center;
 				background-size: cover;
 				background-attachment: fixed;
@@ -31,12 +30,8 @@
 
 			.bgimg-2 {
 			  background-image: url("images/barber_beard_cut_half_size.jpg");
+			  opacity: 0.65;
 			  min-height: 300px;
-			}
-
-			.bgimg-3 {
-			  background-image: url("images/img_parallax3.jpg");
-			  min-height: 400px;
 			}
 
 			.caption {
@@ -59,6 +54,18 @@
 			.navbar-brand {
 				position: fixed;
 			    top: 20px;
+			}
+
+			.btn-info {
+				transition: all 0.3s ease 0s;
+				border-radius: 25px
+			}
+
+			.btn-info:hover {
+				background-color: #68c7e3;
+				border-color: #53bfdf;
+				box-shadow: 0px 5px 10px 5px rgba(170, 222, 238, 0.4);
+				transform: translateY(-5px);
 			}
 
 			.anchor {
@@ -127,7 +134,7 @@
 		<!-- Splash -->
 		<div class="bgimg-1">
 			<div class="caption">
-				<span class = "border"><i>Cutsu Haircuts</i></span>
+				<span class = "border" style="opacity: .85"><i>Cutsu Haircuts</i></span>
 			</div>
 		</div>
 
