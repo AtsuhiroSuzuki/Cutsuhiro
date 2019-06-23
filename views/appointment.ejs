@@ -42,6 +42,8 @@
   				background-repeat: no-repeat;
 				background-image: url("images/barber_pole_half_size.jpg");
 				min-height: 550px;
+				width: 100%;
+				height: auto;
 			}
 
 			.rainbow-text {
@@ -175,10 +177,7 @@
 				var request = new XMLHttpRequest();
 				request.open("POST", "", true);
 				request.onload = function() {
-					console.log(request.status)
-					if (request.status === 200) {
-						window.location.replace('/formSubmitted');
-					}
+					window.location.replace('/formSubmitted');
 				};
 				request.setRequestHeader('Content-Type', 'application/json');
 				request.send(JSON.stringify(formData));
