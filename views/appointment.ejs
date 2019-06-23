@@ -35,15 +35,12 @@
 
 			.bgimg-1 {
 				position: relative;
-				opacity: 0.65;
 				background-position: center;
 				background-size: cover;
 				background-attachment: fixed;
   				background-repeat: no-repeat;
 				background-image: url("images/barber_pole_half_size.jpg");
 				min-height: 550px;
-				width: 100%;
-				height: auto;
 			}
 
 			.rainbow-text {
@@ -63,7 +60,7 @@
 		</style>
 	</head>
 
-	<body onload="start()">
+	<body onload="start()" class="bgimg-1">
 		<header id="header" class="header container">
 			<div class="navbar navbar-default navbar-fixed-top headroom headroom--not-bottom headroom--pinned headroom--top">
 				<div class="container">
@@ -84,8 +81,6 @@
 				</div>
 			</div>
 		</header>
-		<div class="bgimg-1">
-		</div>
 		<div class="container">
 			<div class="row">
         		<div class="col-md-6">
